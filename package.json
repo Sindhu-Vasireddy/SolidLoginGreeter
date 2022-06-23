@@ -1,0 +1,29 @@
+{
+  "name": "SolidWelcomeLogin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@comunica/query-sparql": "^2.2.1",
+    "@inrupt/solid-client-authn-browser": "^1.12.0",
+    "@inrupt/solid-client-authn-node": "^1.12.0",
+    "buffer": "^6.0.3",
+    "node-fetch": "^3.2.6",
+    "node-polyfill-webpack-plugin": "^1.1.4"
+  },
+  "devDependencies": {
+    "css-loader": "^6.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}

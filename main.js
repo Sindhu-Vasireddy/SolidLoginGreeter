@@ -73,14 +73,11 @@ async function handleRedirectAfterLogin() {
         }
 
 
-
             document.getElementById('output').textContent="Hi "+ data_array[0]+" "+data_array[1]+"!";
             document.getElementById('webid').classList.add("hidden");
-        
 
-            console.log(document.getElementById('webid'));
             document.getElementById('webid_Login').classList.add("hidden");
-            console.log(document.getElementById('webid_Login'));
+       
         }
 }
 
@@ -112,7 +109,6 @@ async function getIssuerFromWebID(webid){
   });
   myEngine_getIssuer.invalidateHttpCache();
   const bindings = await bindingsStream.toArray();
-  // console.log(`${bindings[0].get('o').value}`);
   return(bindings[0].get('o').value); 
   
 }

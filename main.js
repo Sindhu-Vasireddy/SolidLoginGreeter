@@ -129,7 +129,7 @@ async function getDataFromWebID(webid){
           var myEngine_getData_ = new QueryEngine();
           const bindingsStream_ = await myEngine_getData_.queryBindings(`
           SELECT ?Name  WHERE {
-           ?s <http://xmlns.com/foaf/0.1/Name> ?Name.
+           ?s <http://xmlns.com/foaf/0.1/name> ?Name.
           }`, {
             sources: [`${webid}`],
             fetch: myfetchFunction,

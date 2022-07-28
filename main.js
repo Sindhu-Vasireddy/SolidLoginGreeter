@@ -117,7 +117,7 @@ async function getDataFromWebID(webid){
   var myEngine_getData = new QueryEngine();
   const bindingsStream = await myEngine_getData.queryBindings(`
   SELECT ?familyName ?givenName WHERE {
-   ?s <http://xmlns.com/foaf/0.1/familyName> ?familyName;
+   <${webid}> <http://xmlns.com/foaf/0.1/familyName> ?familyName;
   <http://xmlns.com/foaf/0.1/givenName> ?givenName.
   }`, {
     sources: [`${webid}`],
@@ -129,7 +129,7 @@ async function getDataFromWebID(webid){
           var myEngine_getData_ = new QueryEngine();
           const bindingsStream_ = await myEngine_getData_.queryBindings(`
           SELECT ?Name  WHERE {
-           ?s <http://xmlns.com/foaf/0.1/name> ?Name.
+            <${webid}> <http://xmlns.com/foaf/0.1/name> ?Name.
           }`, {
             sources: [`${webid}`],
             fetch: myfetchFunction,

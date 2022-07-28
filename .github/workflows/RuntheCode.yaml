@@ -7,7 +7,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Install all the dependencies
-          run: npm ci
+          run: npm i
         - name: Build the code
           run: num run build
         - name: Start the code

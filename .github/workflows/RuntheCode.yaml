@@ -13,5 +13,3 @@ jobs:
           run: npm run build
         - name: Start the code
           run: npm start &
-        - name: Open the url
-          run: curl http://localhost:8000 

@@ -10,6 +10,6 @@ jobs:
         - name: Install all the dependencies
           run: npm i
         - name: Build the code
-          run: num run build
+          run: npm run build
         - name: Start the code
           run: npm start  

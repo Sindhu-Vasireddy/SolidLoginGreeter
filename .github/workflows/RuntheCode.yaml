@@ -1,0 +1,14 @@
+name: Run the Code
+
+on: [push,pull_request]
+
+jobs:
+    run-the-code:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Install all the dependencies
+          run: npm ci
+        - name: Build the code
+          run: num run build
+        - name: Start the code
+          run: npm start  

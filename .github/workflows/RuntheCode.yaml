@@ -11,8 +11,6 @@ jobs:
           run: npm ci
         - name: Build the code
           run: npm run build
-        # - name: Start the code
-        #   run: npm start 
         - name: Deploy
           uses: peaceiris/actions-gh-pages@v3
           with:

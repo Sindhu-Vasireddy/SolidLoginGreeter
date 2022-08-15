@@ -8,8 +8,13 @@ jobs:
       steps:
         - uses: actions/checkout@v2
         - name: Install all the dependencies
-          run: npm i
+          run: npm ci
         - name: Build the code
           run: npm run build
-        - name: Start the code
-          run: npm start &
+        # - name: Start the code
+        #   run: npm start 
+        - name: Deploy
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./public

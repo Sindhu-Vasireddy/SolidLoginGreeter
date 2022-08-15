@@ -44,7 +44,7 @@ async function handleRedirectAfterLogin() {
                     // Cancel the default action, if needed
                     event.preventDefault();
 
-                    const query_extra= `INSERT DATA {:me <http://xmlns.com/foaf/0.1/Name> "${document.getElementById('Name').value}".}`;
+                    const query_extra= `INSERT DATA {:me <http://xmlns.com/foaf/0.1/name> "${document.getElementById('Name').value}".}`;
                 
                     // Send a GET and PUT request to update the source
                     const query = query_extra;

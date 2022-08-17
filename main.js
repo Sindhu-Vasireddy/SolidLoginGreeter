@@ -15,7 +15,7 @@ async function Login(Issuer) {
             await login({
             oidcIssuer:Issuer,
             redirectUrl: window.location.href,
-            clientName:"LocationHistory"
+            clientName:"SolidLoginGreeter"
           });
          }
 
@@ -60,7 +60,7 @@ async function handleRedirectAfterLogin() {
 
                         let data_array=await getDataFromWebID(window.sessionStorage.getItem('webID_later'));
                         console.log(data_array);   
-                        document.getElementById('output').textContent="Hi "+ data_array[0]+" "+data_array[1]+"!";                     
+                        document.getElementById('output').innerHTML='<h1>'+"Hi "+ data_array[0]+" "+data_array[1]+"!"+'</h1>';                     
                     }
                 }
                   
@@ -73,7 +73,7 @@ async function handleRedirectAfterLogin() {
         }
 
 
-            document.getElementById('output').textContent="Hi "+ data_array[0]+" "+data_array[1]+"!";
+            document.getElementById('output').innerHTML='<h2>'+"Hi "+ data_array[0]+" "+data_array[1]+"!"+'</h2>';
             document.getElementById('webid').classList.add("hidden");
 
             document.getElementById('webid_Login').classList.add("hidden");
@@ -92,8 +92,7 @@ document.getElementById('webid_Login').addEventListener('click', async () => { l
 async function myfetchFunction(url){
   return await solidfetch(url, {
        method: 'GET',
-       headers: { 'Content-Type': 'application/sparql-update','Cache-Control': 'no-cache' },
-       credentials: 'include'
+       headers: { 'Content-Type': 'application/sparql-update','Cache-Control': 'no-cache'},
         });
 }
 

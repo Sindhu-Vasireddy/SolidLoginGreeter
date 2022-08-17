@@ -1,24 +1,30 @@
+
 <!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<style> .hidden { visibility: hidden; display: none;} </style>
-		</head>
-	<body>
-		<div id="front_page">
-			<input type="text" id="webid" placeholder="Enter your webID">
-	        <button id="webid_Login">Login</button>
-	    </div>
-    	
-    	<div id="output">
-    	</div>
-    	<div id="output_name">
-    	</div>
-    	<input type="text" id="Name" placeholder="Enter your Name!" class="hidden">
+		<link rel="stylesheet" type="text/css" href="index.css" />
+		<title>SolidLoginGreeter👋</title>
+	</head>
+	<body class="loginpage">
+		<section class="parent">
+			<div id="front_page" class="child">
+				<input type="text" id="webid" placeholder="Enter your webID" class="mywebid">
+				</br></br><button id="webid_Login">Login</button>
 
+				</br><br/>
+				<div id="output">
+				</div>
+				<br>
+				<div id="output_name">
+				</div>
+				<div>
+					</br><input type="text" id="Name" placeholder="Enter your Name!" class="hidden" class="mywebid">
+				</div>
+			</div>
+		</section>
 
-
-    	<!--<button id="db" type="button" >Rendering DumDum</button>-->
 		<script defer src="index.js"></script>
 	</body>
 </html>

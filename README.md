@@ -1,4 +1,6 @@
 # SolidWelcomeLogin
+
+To run locally:
 1. Clone the Repository.
 2. Install the node dependencies using:
                 ```npm ci```

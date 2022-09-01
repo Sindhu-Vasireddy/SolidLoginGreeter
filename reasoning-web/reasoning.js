@@ -49,7 +49,7 @@ export async function main(webid, podUrl) {
   output.splice(output.length-8, 8);
   output.join('\n');
   const ro = output.join('');
-  const file= `${podUrl}answer.n3`;
+  const file= `${podUrl}private/answer.n3`;
   const response = await fetch(file, {
     method: 'PUT',
     headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},

@@ -41,7 +41,6 @@ export async function doFetch(link) {
     method: 'GET',
     headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},
     credentials: 'include',
-    mode: 'cors',
   });
   return response;
 }

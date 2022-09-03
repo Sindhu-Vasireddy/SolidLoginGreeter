@@ -1,3 +1,4 @@
+
 let yield_ = null;
 let output = [];
 const buffers = {
@@ -36,28 +37,28 @@ function query(query) {
   next(yield_.resume(query));
 }
 
-export async function main(webid, podUrl) {
-  await fetchWrite(webid, 'Profile.n3');
-  output=[];
-  let query=`main(['./Profile.n3', '--query', './PreferenceRules.n3']).`;
+// export async function main(webid, podUrl) {
+//   await fetchWrite(webid, 'Profile.n3');
+//   output=[];
+//   let query=`main(['./Profile.n3', '--query', './PreferenceRules.n3']).`;
 
-  if (!/\.\s*/.test(query)) {
-    query += '.\n';
-  }
-  next(yield_.resume(query));
-  output.splice(0, 10);
-  output.splice(output.length-8, 8);
-  output.join('\n');
-  const ro = output.join('');
-  const file= `${podUrl}private/answer.n3`;
-  const response = await fetch(file, {
-    method: 'PUT',
-    headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},
-    body: ro,
-    credentials: 'include',
-  });
-  console.log(response);
-}
+//   if (!/\.\s*/.test(query)) {
+//     query += '.\n';
+//   }
+//   next(yield_.resume(query));
+//   output.splice(0, 10);
+//   output.splice(output.length-8, 8);
+//   output.join('\n');
+//   const ro = output.join('');
+//   const file= `${podUrl}private/answer.n3`;
+//   const response = await fetch(file, {
+//     method: 'PUT',
+//     headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},
+//     body: ro,
+//     credentials: 'include',
+//   });
+//   console.log(response);
+// }
 
 function next(rc) {
   yield_ = null;
@@ -87,6 +88,9 @@ var Module = {
   preRun: [() => bindStdStreams(Module)],
 };
 
+
+
+
 async function fetchWrite(link, file) {
   const response = await fetch(link);
   await Module.FS.writeFile(file, await response.text());
@@ -94,7 +98,7 @@ async function fetchWrite(link, file) {
 
 SWIPL(Module).then(async (module) => {
   await fetchWrite('https://sindhu-vasireddy.github.io/GreeterSupplements/eye.pl', 'eye.pl');
-  await fetchWrite('https://svasired.pod.knows.idlab.ugent.be/private/PreferenceRules.n3', 'PreferenceRules.n3');
+  
 
   pl('set_prolog_flag(tty_control, true)');
   pl('set_prolog_flag(debug_on_error, false)');

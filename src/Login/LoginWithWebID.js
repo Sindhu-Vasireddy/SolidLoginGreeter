@@ -3,11 +3,12 @@ import {
   handleIncomingRedirect,
   getDefaultSession,
 } from '@inrupt/solid-client-authn-browser';
-import {main} from '../../public/reasoning-web/reasoning';
-import {getDataFromReasoning} from '../appReasoning/eyePreference';
+import {main} from '../appReasoning/fetchAnswer';
+import {getDataFromReasoning} from '../appReasoning/sayHi';
 import {greetUser} from '../UI/frontend';
 import {getPodUrlFromWebID} from './webIDfetch';
 import {addNameToWebID} from '../UI/frontend';
+
 /**
  * Logs the user to app.
  * @param {String} Issuer OidcIssuer.

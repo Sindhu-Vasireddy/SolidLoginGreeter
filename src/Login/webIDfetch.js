@@ -1,5 +1,5 @@
 import {myfetchFunction} from '../Utilities/customFetch';
-const QueryEngine = require('@comunica/query-sparql-file').QueryEngine;
+const QueryEngine = require('@comunica/query-sparql').QueryEngine;
 
 /**
  * Fetches Issuer from webid.

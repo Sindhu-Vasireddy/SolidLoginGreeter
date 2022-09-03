@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable new-cap */
 import {Login} from '../Login/LoginWithWebID';
-import {getDataFromReasoning} from '../appReasoning/eyePreference';
+import {getDataFromReasoning} from '../appReasoning/sayHi';
 import {fetch as solidfetch} from '@inrupt/solid-client-authn-browser';
 import {getIssuerFromWebID, getPodUrlFromWebID} from '../Login/webIDfetch';
 

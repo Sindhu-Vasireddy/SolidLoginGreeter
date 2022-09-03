@@ -1,0 +1,18 @@
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix schema: <http://schema.org/>.
+
+
+
+{
+    ?SCOPE e:optional {?s foaf:nick ?o. ?C log:equalTo foaf:nick.}.
+    ?SCOPE e:optional {?s foaf:name ?o. ?C log:equalTo foaf:name.}.
+    ?SCOPE e:optional {?s foaf:givenName ?o. ?C log:equalTo foaf:givenName.}.
+    ?SCOPE e:optional {?s foaf:familyName ?o. ?C log:equalTo foaf:familyName.}.
+    ?SCOPE e:optional {?s schema:givenName ?o. ?C log:equalTo schema:givenName.}.
+    ?SCOPE e:optional {?s schema:familyName ?o. ?C log:equalTo schema:familyName.}.
+} => {
+    ?s ?C ?o.
+}.

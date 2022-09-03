@@ -9,13 +9,11 @@
     "prepare": "npm run build",
     "start": "webpack serve --open"
   },
-  "eslintIgnore": ["./public/reasoning-web/swipl-web.js", "./public/reasoning-web/reasoning.js"],
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@comunica/query-sparql": "^2.2.1",
-    "@comunica/query-sparql-file": "^2.4.2",
+    "@comunica/query-sparql": "^2.4.2",
     "@inrupt/solid-client-authn-browser": "^1.12.0",
     "@inrupt/solid-client-authn-node": "^1.12.0",
     "buffer": "^6.0.3",

@@ -15,6 +15,10 @@ export async function getDataFromReasoning(pathtoanswern3, webid) {
   if (res.status>=400||res.status==0) {
     return ', could not fetch your preference rules';
   } else {
+    const res= await doFetch(pathtoanswern3);
+    if (res.status>=400||res.status==0) {
+      return webid;}
+      else{
     const myEngineGetData = new QueryEngine();
     const bindingsStream = await myEngineGetData.queryBindings(`
     SELECT DISTINCT ?o
@@ -28,7 +32,7 @@ export async function getDataFromReasoning(pathtoanswern3, webid) {
     const bindings = await bindingsStream.toArray();
     // If none of the predicates are present, webid will be shown.
     return (!bindings.length)?(webid):(bindings[0].get('o').value);
-  }
+  }}
 }
 
 /**
@@ -41,7 +45,6 @@ export async function doFetch(link) {
     method: 'GET',
     headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},
     credentials: 'include',
-    mode: 'cors',
   });
   return response;
 }

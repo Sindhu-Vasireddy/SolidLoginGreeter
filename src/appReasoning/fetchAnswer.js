@@ -23,6 +23,9 @@ export async function main(webid, podUrl) {
   let ro = output.join('');
   const id=webid.replace('#me', '');
   ro=ro.replaceAll('file:///Profile.n3', `${id}`);
+  if (ro.startsWith('** ERROR')) {
+    ro='';
+  }
   const file= `${podUrl}private/answer.n3`;
   const response = await solidfetch(file, {
     method: 'PUT',
@@ -42,8 +45,14 @@ async function fetchWriteFromPod(link, file) {
     method: 'GET',
     headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},
     credentials: 'include',
-    mode: 'cors',
   });
   await Module.FS.writeFile(file, await response.text());
 }
 
+// CORS headers
+// 'Access-Control-Allow-Headers':
+// 'Origin, X-Requested-With, Content-Type, Accept',
+//   'Access-Control-Allow-Credentials':
+// 'true',
+//   'Access-Control-Allow-Origin': 'https://sindhu-vasireddy.github.io',
+//   'Access-Control-Allow-Origin': 'http://localhost:8080'

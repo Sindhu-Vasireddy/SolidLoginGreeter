@@ -8,7 +8,6 @@ import {fetch as solidfetch} from '@inrupt/solid-client-authn-browser';
 export async function myfetchFunction(url) {
   return await solidfetch(url, {
     method: 'GET',
-    headers: {'Content-Type': 'application/sparql-update',
-      'Cache-Control': 'no-cache'},
+    headers: {'Cache-Control': 'no-cache'},
   });
 }

@@ -42,7 +42,6 @@ async function fetchWriteFromPod(link, file) {
     method: 'GET',
     headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},
     credentials: 'include',
-    mode: 'cors',
   });
   await Module.FS.writeFile(file, await response.text());
 }

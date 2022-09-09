@@ -13,17 +13,18 @@ export async function getPreferredName(webid, podUrl) {
   // await fetchWriteFromPod(`${podUrl}private/PreferenceRules.n3`,
   //     'PreferenceRules.n3');
   await fetchWriteFromPod(webid, 'Profile.n3');
-  await fetchWriteFromPod(`https://sindhu-vasireddy.github.io/SolidLoginGreeter/PreferenceRules.n3`,
+  await fetchWriteFromPod(`./PreferenceRules.n3`,
       'PreferenceRules.n3');
-
+  await fetchWriteFromPod(`./PreferencePredicates.n3`,
+      'PreferencePredicates.n3');
   output=[];
-  let query=`main(['./Profile.n3', '--query', './PreferenceRules.n3']).`;
+  let query=`main(['./Profile.n3','./PreferencePredicates.n3', '--query', './PreferenceRules.n3']).`;
 
   if (!/\.\s*/.test(query)) {
     query += '.\n';
   }
   next(yield_.resume(query));
-  output.splice(0, 10);
+  output.splice(0, 11);
   output.splice(output.length-8, 8);
   output.join('\n');
   let ro = output.join('');

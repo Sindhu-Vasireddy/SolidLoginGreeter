@@ -1,20 +1,6 @@
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
 PREFIX ex: <https://example.org/tmp#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX list: <http://www.w3.org/2000/10/swap/list#>
-PREFIX schema: <http://schema.org/>
-
-# Default greeting preference
-ex:defaultGreetingPreference a ex:PredicatePreference;
-  # Ordered preference of predicates
-  ex:preferredPredicates (
-    foaf:nick
-    foaf:givenName
-    foaf:name
-    schema:givenName
-  );
-  # Name of the predicate into which the result is put
-  ex:resultPredicate ex:preferredGreeting.
 
 # Apply predicate preferences
 {

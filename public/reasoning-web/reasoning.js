@@ -1,6 +1,6 @@
 
 let yield_ = null;
-const output = [];
+let output = [];
 const buffers = {
   stdout: [],
   stderr: [],
@@ -89,6 +89,8 @@ var Module = {
 };
 
 
+
+
 async function fetchWrite(link, file) {
   const response = await fetch(link);
   await Module.FS.writeFile(file, await response.text());
@@ -96,7 +98,7 @@ async function fetchWrite(link, file) {
 
 SWIPL(Module).then(async (module) => {
   await fetchWrite('https://sindhu-vasireddy.github.io/GreeterSupplements/eye.pl', 'eye.pl');
-
+  
 
   pl('set_prolog_flag(tty_control, true)');
   pl('set_prolog_flag(debug_on_error, false)');
@@ -104,5 +106,4 @@ SWIPL(Module).then(async (module) => {
   toplevel();
   query(`consult('./eye.pl')`);
 });
-
 

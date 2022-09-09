@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   login,
   handleIncomingRedirect,
@@ -35,8 +36,7 @@ export async function handleRedirectAfterLogin() {
   if (getDefaultSession().info.isLoggedIn) {
     const podUrl = await getPodUrlFromWebID(
         window.sessionStorage.getItem('webID_later'));
-    await getPreferredName(window.sessionStorage.getItem('webID_later'),
-        podUrl);
+    await getPreferredName(window.sessionStorage.getItem('webID_later'), podUrl);
     const dataArray=await getDataFromReasoning(`${podUrl}private/answer.n3`,
         window.sessionStorage.getItem('webID_later'));
     console.log('String output', dataArray);

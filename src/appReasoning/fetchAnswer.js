@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {fetch as solidfetch} from '@inrupt/solid-client-authn-browser';
 // import {setUpRules} from '../appReasoning/setup';
 
@@ -7,17 +8,15 @@ import {fetch as solidfetch} from '@inrupt/solid-client-authn-browser';
  * @param {String} podUrl Podurl of the user.
  */
 export async function getPreferredName(webid, podUrl) {
-  // Preference Rules are no longer added to user pod.
+  // Preference Rules are no longer added to user pod .
   // await setUpRules(podUrl);
   // await fetchWriteFromPod(`${podUrl}private/PreferenceRules.n3`,
   //     'PreferenceRules.n3');
   await fetchWriteFromPod(webid, 'Profile.n3');
+  await fetchWriteFromPod(`/PreferenceRules.n3`,
+      'PreferenceRules.n3');
 
-  // default fetch since file is local.
-  const rules = await fetch('./PreferenceRules.n3');
-  await Module.FS.writeFile('./PreferenceRules.n3', await rules.text());
-
-  const output=[];
+  output=[];
   let query=`main(['./Profile.n3', '--query', './PreferenceRules.n3']).`;
 
   if (!/\.\s*/.test(query)) {
@@ -48,18 +47,11 @@ export async function getPreferredName(webid, podUrl) {
  * @param {string} file FS location of the local file.
  */
 async function fetchWriteFromPod(link, file) {
-  const response = await solidfetch(link, {
-    method: 'GET',
-    headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},
-    credentials: 'include',
-  });
+  // const response = await fetch(link, {
+  //   method: 'GET',
+  //   headers: {'Content-Type': 'text/n3', 'Cache-Control': 'no-cache'},
+  //   credentials: 'include',
+  // });
+  const response = await fetch(link);
   await Module.FS.writeFile(file, await response.text());
 }
-
-// CORS headers
-// 'Access-Control-Allow-Headers':
-// 'Origin, X-Requested-With, Content-Type, Accept',
-//   'Access-Control-Allow-Credentials':
-// 'true',
-//   'Access-Control-Allow-Origin': 'https://sindhu-vasireddy.github.io',
-//   'Access-Control-Allow-Origin': 'http://localhost:8080'

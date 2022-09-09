@@ -13,7 +13,7 @@ export async function getPreferredName(webid, podUrl) {
   // await fetchWriteFromPod(`${podUrl}private/PreferenceRules.n3`,
   //     'PreferenceRules.n3');
   await fetchWriteFromPod(webid, 'Profile.n3');
-  await fetchWriteFromPod(`/PreferenceRules.n3`,
+  await fetchWriteFromPod(`SolidLoginGreeter/PreferenceRules.n3`,
       'PreferenceRules.n3');
 
   output=[];

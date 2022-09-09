@@ -6,7 +6,7 @@ import {fetch as solidfetch} from '@inrupt/solid-client-authn-browser';
  * @param {String} webid WebID of the user.
  * @param {String} podUrl Podurl of the user.
  */
-export async function main(webid, podUrl) {
+export async function getPreferredName(webid, podUrl) {
   // Preference Rules are no longer added to user pod.
   // await setUpRules(podUrl);
   // await fetchWriteFromPod(`${podUrl}private/PreferenceRules.n3`,
@@ -17,7 +17,7 @@ export async function main(webid, podUrl) {
   const rules = await fetch('./PreferenceRules.n3');
   await Module.FS.writeFile('./PreferenceRules.n3', await rules.text());
 
-  output=[];
+  const output=[];
   let query=`main(['./Profile.n3', '--query', './PreferenceRules.n3']).`;
 
   if (!/\.\s*/.test(query)) {

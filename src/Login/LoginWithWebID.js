@@ -3,7 +3,7 @@ import {
   handleIncomingRedirect,
   getDefaultSession,
 } from '@inrupt/solid-client-authn-browser';
-import {main} from '../appReasoning/fetchAnswer';
+import {getPreferredName} from '../appReasoning/fetchAnswer';
 import {getDataFromReasoning} from '../appReasoning/sayHi';
 import {greetUser} from '../UI/frontend';
 import {getPodUrlFromWebID} from './webIDfetch';
@@ -35,7 +35,8 @@ export async function handleRedirectAfterLogin() {
   if (getDefaultSession().info.isLoggedIn) {
     const podUrl = await getPodUrlFromWebID(
         window.sessionStorage.getItem('webID_later'));
-    await main(window.sessionStorage.getItem('webID_later'), podUrl);
+    await getPreferredName(window.sessionStorage.getItem('webID_later'),
+        podUrl);
     const dataArray=await getDataFromReasoning(`${podUrl}private/answer.n3`,
         window.sessionStorage.getItem('webID_later'));
     console.log('String output', dataArray);

@@ -10,15 +10,15 @@ const QueryEngine = require('@comunica/query-sparql').QueryEngine;
  * @return {String} The output name string
  */
 export async function getDataFromReasoning(pathtoanswern3, webid) {
-  const link=pathtoanswern3.split('answer.n3').shift()+'PreferenceRules.n3';
-  const res=await doFetch(link);
+  // const link=pathtoanswern3.split('answer.n3').shift()+'PreferenceRules.n3';
+  // const res=await doFetch(link);
+  // if (res.status>=400||res.status==0) {
+  //   return ', could not fetch your preference rules';
+  // }
+  const res= await doFetch(pathtoanswern3);
   if (res.status>=400||res.status==0) {
-    return ', could not fetch your preference rules';
+    return webid;
   } else {
-    const res= await doFetch(pathtoanswern3);
-    if (res.status>=400||res.status==0) {
-      return webid;}
-      else{
     const myEngineGetData = new QueryEngine();
     const bindingsStream = await myEngineGetData.queryBindings(`
     SELECT DISTINCT ?o
@@ -32,7 +32,7 @@ export async function getDataFromReasoning(pathtoanswern3, webid) {
     const bindings = await bindingsStream.toArray();
     // If none of the predicates are present, webid will be shown.
     return (!bindings.length)?(webid):(bindings[0].get('o').value);
-  }}
+  }
 }
 
 /**

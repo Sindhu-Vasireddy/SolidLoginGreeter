@@ -1,0 +1,15 @@
+PREFIX ex: <https://example.org/tmp#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX schema: <http://schema.org/>
+
+# Default greeting preference
+ex:defaultGreetingPreference a ex:PredicatePreference;
+  # Ordered preference of predicates
+  ex:preferredPredicates (
+    foaf:nick
+    foaf:givenName
+    foaf:name
+    schema:givenName
+  );
+  # Name of the predicate into which the result is put
+  ex:resultPredicate ex:preferredGreeting.

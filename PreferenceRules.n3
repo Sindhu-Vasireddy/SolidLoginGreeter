@@ -1,18 +1,45 @@
-@prefix log: <http://www.w3.org/2000/10/swap/log#>.
-@prefix math: <http://www.w3.org/2000/10/swap/math#>.
-@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix schema: <http://schema.org/>.
+PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+PREFIX ex: <https://example.org/tmp#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX list: <http://www.w3.org/2000/10/swap/list#>
+PREFIX schema: <http://schema.org/>
 
+# Default greeting preference
+ex:defaultGreetingPreference a ex:PredicatePreference;
+  # Ordered preference of predicates
+  ex:preferredPredicates (
+    foaf:nick
+    foaf:givenName
+    foaf:name
+    schema:givenName
+  );
+  # Name of the predicate into which the result is put
+  ex:resultPredicate ex:preferredGreeting.
 
-
+# Apply predicate preferences
 {
-    ?SCOPE e:optional {?s foaf:nick ?o. ?C log:equalTo foaf:nick.}.
-    ?SCOPE e:optional {?s foaf:name ?o. ?C log:equalTo foaf:name.}.
-    ?SCOPE e:optional {?s foaf:givenName ?o. ?C log:equalTo foaf:givenName.}.
-    ?SCOPE e:optional {?s foaf:familyName ?o. ?C log:equalTo foaf:familyName.}.
-    ?SCOPE e:optional {?s schema:givenName ?o. ?C log:equalTo schema:givenName.}.
-    ?SCOPE e:optional {?s schema:familyName ?o. ?C log:equalTo schema:familyName.}.
-} => {
-    ?s ?C ?o.
+  # Load the applicable preference
+  ?predicatePreference
+    ex:preferredPredicates ?predicates;
+    ex:resultPredicate ?resultPredicate.
+
+  # Find all subjects that use predicates occurring in the preference
+  ?predicates list:member ?selectedPredicate.
+  ?subject ?selectedPredicate ?preferredValue.
+
+  # Ensure no better match exists earlier in the preference list
+  (?head ?after) list:append ?predicates.
+  (?before (?selectedPredicate)) list:append ?head.
+  ?scope e:findall (
+    ?candidate
+    {
+      ?candidate list:in ?before.
+      ?subject ?candidate ?value.
+    }
+    ()
+  ).
+}
+=>
+{
+  ?subject ?resultPredicate ?preferredValue.
 }.
